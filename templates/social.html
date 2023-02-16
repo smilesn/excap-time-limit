@@ -1,0 +1,83 @@
+<html>
+    <head>
+    <title>Welcome!</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+    <script>TypekitConfig={kitId:"hum1oye",scriptTimeout:1.5e3},function(){var a=document.getElementsByTagName("html")[0];a.className+=" wf-loading";var b=setTimeout(function(){a.className=a.className.replace(/(\s|^)wf-loading(\s|$)/g,""),a.className+=" wf-inactive"},TypekitConfig.scriptTimeout),c=document.createElement("script");c.src="//use.typekit.com/"+TypekitConfig.kitId+".js",c.type="text/javascript",c.async="true",c.onload=c.onreadystatechange=function(){var a=this.readyState;if(!a||a=="complete"||a=="loaded"){clearTimeout(b);try{Typekit.load(TypekitConfig)}catch(c){}}};var d=document.getElementsByTagName("script")[0];d.parentNode.insertBefore(c,d)}()</script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    </head>
+  <body>
+        <script>
+                window.fbAsyncInit = function() {
+                  FB.init({
+                    appId      : '745114920560757',
+                    cookie     : true,
+                    xfbml      : true,
+                    version    : 'v5.0'
+                  });
+                    
+                  FB.getLoginStatus(function(response) {
+                    statusChangeCallback(response);
+                  });  
+                    
+                };
+              
+                (function(d, s, id){
+                   var js, fjs = d.getElementsByTagName(s)[0];
+                   if (d.getElementById(id)) {return;}
+                   js = d.createElement(s); js.id = id;
+                   js.src = "https://connect.facebook.net/en_US/sdk.js";
+                   fjs.parentNode.insertBefore(js, fjs);
+                 }(document, 'script', 'facebook-jssdk'));
+        
+                function statusChangeCallback(response){
+                     if(response.status === 'connected'){
+                         console.log('logged in, authenticated');
+                         setElements(true)
+                     } else{
+                         console.log('not authenticated');
+                         setElements(false)
+                     }
+                 }
+        
+                function checkLoginState() {
+                    FB.getLoginStatus(function(response) {
+                        statusChangeCallback(response);
+                    });
+                }
+        
+                function setElements(isLoggedIn){
+                    if (isLoggedIn){
+                        var form = document.createElement('form');
+                        form.setAttribute('method', 'post');
+                        form.setAttribute('action', 'http://localhost:5004/loginsocial');
+                        form.style.display = 'hidden';
+                        document.body.appendChild(form)
+                        form.submit();
+                    } else {
+        
+                    }
+                }
+              </script>
+
+    <div class="container"> 
+     <form id="loginForm" action="#">
+
+      <h1>Maaf! Sesi internet gratis 30 menit Anda sudah habis.</h1>
+      <p>Jika membutuhkan internet lagi silahkan login dengan Facebook.<br><br></p>
+        <!--<a href="http://www.google.com">Entendido</a>-->
+
+        <fb:login-button 
+          id="fb-btn"
+          scope="public_profile,email"
+          onlogin="checkLoginState();">
+          </fb:login-button>
+
+
+     </form>     
+    </div>
+              
+
+  </body>
+</html>
